@@ -1,0 +1,52 @@
+#top{
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    margin-top: 2%;    
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+#canvas {
+    position: relative;
+    top: 11.8%;
+    left: 2.4%;
+}
+
+footer {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    margin-top: 1%;    
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+body
+{
+    font-family: "Raleway", Arial, sans-serif;
+    background-image: url(artback.jpg);
+    background-size: 1500px 650px;
+}
+
+.the_wheel
+{   
+    background-image: url(backwheel.png);
+    background-size: 580px;
+    background-position: center;
+}
+
+.blocktable {
+    margin: auto;
+}
+  
+.center {
+    text-align: center;
+    margin: auto;
+    width: 100px;
+}
+
+#text1{
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
