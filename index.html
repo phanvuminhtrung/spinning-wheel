@@ -1,97 +1,200 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>wheeliethespin</title>
-        <link rel="stylesheet" href="main.css" type="text/css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <title>Spinning Wheel</title>
+
+        <!-- reference css library -->
+        <link rel="stylesheet" href="style/main.css" type="text/css" />
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+        <!-- reference bootstrap5-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <!-- reference w3school css -->
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 
-
-        <script type="text/javascript" src="Winwheel.min.js"></script>
-        <script type="text/javascript" src="TweenMax.min.js"></script>
-        <script type="text/javascript" src="jquery-3.5.0.min.js"></script>
-        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+        <!-- reference script library -->
+        <script type="text/javascript" src="js/Winwheel.min.js"></script>
+        <script type="text/javascript" src="js/TweenMax.min.js"></script>
+        <script type="text/javascript" src="js/jquery-3.5.0.min.js"></script>
+        <script type="text/javascript" src="js/alertify.js"></script>
+        <!-- <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script> -->
 
     </head>
     <body>
-     <h1 id='top'> 'decide your destiny by IT, not the bible' </h1>
-            <table cellpadding="30" class="blocktable">
-                <tr>
-                    <td class="center">
-                            <table class="power" cellpadding="15" cellspacing="0">
-                                <tr>
-                                    <a id="text1">spinning power</a>
-                                </tr>
-                                <tr>
-                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                        <label class="btn btn-dark">
-                                          <input  type="radio" name="options" id="pw1" onClick="powerSelected(1)"checked> LOW
-                                        </label>
-                                        <label class="btn btn-dark">
-                                          <input type="radio" name="options" id="pw2" onClick="powerSelected(2)" > MID
-                                        </label>
-                                        <label class="btn btn-dark">
-                                          <input type="radio" name="options" id="pw3" onClick="powerSelected(3)" > HIGH
-                                        </label>
-                                      </div>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    <div class="btn-group-toggle" data-toggle="buttons">
-                                        <label class="btn btn-secondary">
-                                          <input id="spin_button" type="checkbox" onclick="startSpin()"> spin
-                                        </label>
-                                    </div>
-                                    </td>
-                                    <td>
-                                    <div class="btn-group-toggle" data-toggle="buttons">
-                                        <label class="btn btn-secondary">
-                                          <input type="checkbox" onclick="resetWheel(); return false;"> donate
-                                    </div>
-                                   </td>   
-                                </tr>
-                            </table>
-                    </td>
-                    <td width="400" height="400" class="the_wheel" align="center" valign="center">
-                        <canvas id="canvas" width="430" height="430">
-                            <p style="color: white" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
-                        </canvas>
-                    </td>
-                </tr>
-            </table>
-        </div>
+        <h1 id='top'> 'use the spinning wheel to make decision' </h1>
+        <!-- display all content as table -->
+        <table cellpadding="30" class="table-block ">
+            <tr>
+                <!-- add promt segment -->
+                <td>
+                    <form id="segmentForm">
+                        <h3>Add Segment</h3>
+                        <label for="segmentText">Segment Text:</label>
+                        <input type="text" id="segmentText" required><br><br>
+                        <label for="segmentColor">Segment Color:</label>
+                        <input type="color" id="segmentColor" value="#FF8CA1" required><br><br>
+                        <button type="button" onclick="addSegment()">Add Segment</button>
+                        <button type="button" onclick="clearSegment()">Clear Segment</button>
+                    </form>
+                    <!-- printout list of segments has populated -->
+                    <div id="segmentsList">
+                        <h3>Segments List:</h3>
+                        <ul id="segmentItems"></ul>
+                    </div>
+                </td>
+                <!-- add promt spin power -->
+                <td class="center">
+                        <table class="power" cellpadding="15" cellspacing="0">
+                            <tr>
+                                <a class="text">spin power</a>
+                            </tr>
+                            <tr>
+                                <br>
+                            </tr>                      
+                            <tr>
+                                <div class="btn-group" role="group">
+                                    <label><button type="button" id="pw1" class="btn btn-dark" onClick="powerSelected(1)">LOW</button></label>
+                                    <label><button type="button" id="pw2" class="btn btn-dark" onClick="powerSelected(2)">MID</button></label>
+                                    <label><button type="button" id="pw3" class="btn btn-dark" onClick="powerSelected(3)">HIGH</button></label>
+                                </div>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button type="button" id="spin_button" class="btn btn-secondary" onclick="startSpin()"> START </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary"  onclick="window.open('https://www.buymeacoffee.com/thisistroyza', '_blank'); return false;"> DONATE </button>
+                            </td>   
+                            </tr>
+                        </table>
+                </td>
+                <!-- add promt wheel canvas -->
+                <td width="400" height="400" class="wheel-layout" align="center" valign="center">
+                    <canvas id="canvas" width="430" height="430">
+                        <p style="color: white" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+                    </canvas>
+                </td>
+            </tr>
+        </table>
 
         <script>
-            // Create new wheel object specifying the parameters at creation time.
+
+            // -------------------------------------------------------
+            // INITALIZE REQUIRED VARIABLES
+            // -------------------------------------------------------
+            const defaultWheelsegments = [
+                {
+                    fillStyle: '#FF8CA1',
+                    text: 'sample1'
+                },
+                {
+                    fillStyle: '#FF8CA1',
+                    text: 'sample2'
+                },
+                {
+                    fillStyle: '#FF8CA1',
+                    text: 'sample3'
+                }
+            ]; 
+            let wheelSegments = defaultWheelsegments;
+            let wheelPower = 1; 
+            let wheelSpinning = false;
             let theWheel = new Winwheel({
-                'numSegments'  : 6,     // Specify number of segments.
+                'numSegments'  : defaultWheelsegments.length,     // Specify number of segments.
                 'outerRadius'  : 160,   // Set outer radius so wheel fits inside the background.
-                'textFontSize' : 20,    // Set font size as desired.
-                'segments'     :       // Define segments including colour and text.
-                [
-                   {'fillStyle' : '#FF8CA1', 'text' : 'sleep'},
-                   {'fillStyle' : '#EB546E', 'text' : 'do homework'},
-                   {'fillStyle' : '#FF8CA1', 'text' : 'game'},
-                   {'fillStyle' : '#EB546E', 'text' : 'netflix'},
-                   {'fillStyle' : '#FF8CA1', 'text' : 'sleep'},
-                   {'fillStyle' : '#EB546E', 'text' : 'youtube'},
-                ],
+                'textFontSize' : 15,    // Set font size as desired.
+                'segments'     : defaultWheelsegments,      // Define segments including colour and text,
                 'animation' :           // Specify the animation to use.
                 {
                     'type'     : 'spinToStop',
-                    'duration' : 5,     // Duration in seconds.
-                    'spins'    : 8,     // Number of complete spins.
-                    'callbackFinished' : alertPrize
+                    'duration' : 3,    
+                    'spins'    : 5,     
+                    'callbackFinished' : alertResults
                 }
             });
 
-            // Vars used by the code in this page to do power controls.
-            let wheelPower    = 1;
-            let wheelSpinning = false;
+            //render the list of segment in initialization
+            refreshSegmenListtDisplay();
 
             // -------------------------------------------------------
-            // Function to handle the onClick on the power buttons.
+            // SEGMENTS: add segments for the wheel
+            // -------------------------------------------------------
+            function addSegment() {
+                const segmentText = document.getElementById("segmentText").value;
+                const segmentColor = document.getElementById("segmentColor").value;
+
+                //validate segment text to be not null
+                if (segmentText === null || segmentText === undefined || segmentText === '') return;
+
+                //make sure to clear default segment when user adds a new segment
+                if (JSON.stringify(wheelSegments) === JSON.stringify(defaultWheelsegments)) { 
+                    wheelSegments = []; 
+                }
+
+                //initialize new segment
+                wheelSegments.push({
+                    fillStyle: segmentColor,
+                    text: segmentText
+                });
+                
+                //clear the text box
+                document.getElementById("segmentText").value = '';
+
+                //update segment + refresh the list
+                updateWheelSegments();
+                refreshSegmenListtDisplay();
+            }
+
+            // -------------------------------------------------------
+            // SEGMENTS: clear all wheel segements and set it back to default
+            // -------------------------------------------------------
+            function clearSegment() {
+                //Reset wheelSegments to default
+                wheelSegments = defaultWheelsegments;
+
+                updateWheelSegments();
+                refreshSegmenListtDisplay();
+            }
+
+            // -------------------------------------------------------
+            // SEGMENTS: perform update segments for the wheel
+            // -------------------------------------------------------
+            function updateWheelSegments() {
+                theWheel = new Winwheel({
+                    'numSegments': wheelSegments.length,
+                    'outerRadius': 160,
+                    'textFontSize': 15,
+                    'segments': wheelSegments,
+                    'animation': {
+                        'type': 'spinToStop',
+                        'duration': 3,
+                        'spins': 5,
+                        'callbackFinished': alertResults
+                    }
+                });
+            }
+
+            // -------------------------------------------------------
+            // SEGMENTS: refresh the segement list display
+            // -------------------------------------------------------
+            function refreshSegmenListtDisplay() {
+                const segmentItems = document.getElementById("segmentItems");
+                // Clear the current list
+                segmentItems.innerHTML = '';
+
+                // Append each segment
+                wheelSegments.forEach(segment => {
+                    const li = document.createElement('li');
+                    li.textContent = `${segment.text}`;
+                    segmentItems.appendChild(li);
+                });
+            }
+
+
+            // -------------------------------------------------------
+            // POWER FUNCTION: define the power of the wheel
             // -------------------------------------------------------
             function powerSelected(powerLevel)
             {
@@ -117,19 +220,17 @@
 
                     // Set wheelPower var used when spin button is clicked.
                     wheelPower = powerLevel;
-              
                 }
             }
 
             // -------------------------------------------------------
-            // Click handler for spin button.
+            // WHEEL FUNCTION: start spinning wheel
             // -------------------------------------------------------
             function startSpin()
             {
-                // Ensure that spinning can't be clicked again while already running.
                 if (wheelSpinning == false) {
-                    // Based on the power level selected adjust the number of spins for the wheel, the more times is has
-                    // to rotate with the duration of the animation the quicker the wheel spins.
+                    
+                    // Define power and number of rotation
                     if (wheelPower == 1) {
                         theWheel.animation.spins = 3;
                     } else if (wheelPower == 2) {
@@ -138,21 +239,19 @@
                         theWheel.animation.spins = 15;
                     }
 
-                    // Begin the spin animation by calling startAnimation on the wheel object.
+                    // Start animation
                     theWheel.startAnimation();
 
-                    // Set to true so that power can't be changed and spin button re-enabled during
-                    // the current animation. The user will have to reset before spinning again.
+                    // Allow to trigger again during the spin
                     wheelSpinning = true;
                 }
             }
 
             // -------------------------------------------------------
-            // Function for reset button.
+            // WHEEL FUNCTION: reset the spinning wheel
             // -------------------------------------------------------
-            /*
             function resetWheel()
-            {
+            {           
                 theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
                 theWheel.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
                 theWheel.draw();                // Call draw to render changes to the wheel.
@@ -163,46 +262,38 @@
 
                 wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again.
             }
-            */
+
             // -------------------------------------------------------
             // Called when the spin animation has finished by the callback feature of the wheel because I specified callback in the parameters
             // note the indicated segment is passed in as a parmeter as 99% of the time you will want to know this to inform the user of their prize.
             // -------------------------------------------------------
-            function alertPrize(indicatedSegment)
+            function alertResults(indicatedSegment)
             {
                 // Do basic alert of the segment text. You would probably want to do something more interesting with this information.
                 alertify.alert(
-                    'your results', 
-                    'duty of todie is ' + indicatedSegment.text, 
-                    function resetWheel(){ 
+                    'RESULT', 
+                    'YOU NEED TO: ' + indicatedSegment.text, 
+                    
+                    function (){ 
                         alertify.success(indicatedSegment.text); 
-                        
-                        theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
-                        theWheel.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
-                        theWheel.draw();                // Call draw to render changes to the wheel.
-
-                        document.getElementById('pw1').className = "";  // Remove all colours from the power level indicators.
-                        document.getElementById('pw2').className = "";
-                        document.getElementById('pw3').className = "";
-
-                        wheelSpinning = false;  
-                        });
-
-                //alert("bitch, go to " + indicatedSegment.text);
+                        resetWheel();
+                    });
             }
 
+            // -------------------------------------------------------
+            // Windows client api: add segment by Enter
+            // -------------------------------------------------------
             $(window).keypress(function (e){
-                if (e.which === 32) {
-                    startSpin();
+                if (e.which === 13) {
+                    addSegment();
                 }
             });
-            //trigger spacebar press for starting the function startSpin(). 
 
         </script>
 
         <footer>
             <div>
-                <p>sponsor by a broke IT student</p>
+                <p>sponsor by a broke developer</p>
             </div>
         </footer>
 

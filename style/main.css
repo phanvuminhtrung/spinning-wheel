@@ -1,0 +1,71 @@
+/* main css */
+footer {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    font-size: 15px;
+    position: fixed;
+    margin-top: 10%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+body
+{
+    font-family: "Raleway", Arial, sans-serif;
+    background-image: url('artback.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    height: 100vh;
+}
+
+/* custom main css */
+#top{
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    margin-top: 2%;    
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+#canvas {
+    position: relative;
+    top: 11.8%;
+    left: 2.4%;
+}
+
+.btn-selected {
+    background-color: whitesmoke;
+    color: whitesmoke;
+}
+
+.text{
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+/* custom wheel */
+.wheel-layout
+{   
+    background-image: url(backwheel.png);
+    background-size: 580px;
+    background-position: center;
+}
+
+.center {
+    text-align: center;
+    margin: auto;
+    width: 100px;
+}
+
+.table-block {
+    margin: auto;
+}
+  
+
+
