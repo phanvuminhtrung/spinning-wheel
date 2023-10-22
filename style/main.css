@@ -19,52 +19,73 @@ body
     background-position: center;
     background-repeat: no-repeat;
     margin: 0;
-    height: 100vh;
+    height: 80vh;
 }
 
 /* custom main css */
-#top{
+.top-header{
     text-align: center;
     color: rgb(255, 255, 255);
     font-size: 40px;
-    margin-top: 2%;    
+    margin-top: 5%;    
     text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
 }
 
-#canvas {
-    position: relative;
-    top: 11.8%;
-    left: 2.4%;
-}
-
-.btn-selected {
-    background-color: whitesmoke;
-    color: whitesmoke;
-}
-
-.text{
-    text-align: center;
+.text-header {
+    text-align: left;
     color: rgb(255, 255, 255);
     font-size: 20px;
     text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    margin-left: 30%;
+}
+
+.text-list {
+    text-align: left;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    margin-left: 20%;
+}
+
+.text{
+    text-align: left;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    margin-left: 10%;
+}
+
+.adjusted-input {
+    width: 60%;  /* or 50%, etc. depending on your requirement */
+}
+
+.adjusted-input-color {
+    width: 20%;  /* or 50%, etc. depending on your requirement */
+}
+
+.button-position {
+    margin-left: 20%;
 }
 
 /* custom wheel */
 .wheel-layout
 {   
-    background-image: url(backwheel.png);
-    background-size: 580px;
-    background-position: center;
+    background-image: url(arrow.png);
+    background-position: center top;
+    background-size: 10%;
+    background-repeat: no-repeat;
 }
 
-.center {
-    text-align: center;
-    margin: auto;
-    width: 100px;
+.canvas-layout {
+    position: relative;
+    margin-top: 7%;
 }
 
 .table-block {
-    margin: auto;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
 }
   
 

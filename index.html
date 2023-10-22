@@ -7,9 +7,11 @@
         <link rel="stylesheet" href="style/main.css" type="text/css" />
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+        
         <!-- reference bootstrap5-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
         <!-- reference w3school css -->
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -19,61 +21,67 @@
         <script type="text/javascript" src="js/TweenMax.min.js"></script>
         <script type="text/javascript" src="js/jquery-3.5.0.min.js"></script>
         <script type="text/javascript" src="js/alertify.js"></script>
-        <!-- <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script> -->
 
     </head>
     <body>
-        <h1 id='top'> 'use the spinning wheel to make decision' </h1>
+        <h1 class= "w3-animate-top top-header"> 'use the spinning wheel to make decision' </h1>
         <!-- display all content as table -->
-        <table cellpadding="30" class="table-block ">
+        <table cellpadding="40" class="table-block ">
             <tr>
-                <!-- add promt segment -->
-                <td>
+                <!-- segment -->
+                <td class="col-3">
+                     <!-- segment input-->
                     <form id="segmentForm">
-                        <h3>Add Segment</h3>
-                        <label for="segmentText">Segment Text:</label>
-                        <input type="text" id="segmentText" required><br><br>
-                        <label for="segmentColor">Segment Color:</label>
-                        <input type="color" id="segmentColor" value="#FF8CA1" required><br><br>
-                        <button type="button" onclick="addSegment()">Add Segment</button>
-                        <button type="button" onclick="clearSegment()">Clear Segment</button>
+                        <h3 class="text-header">segment</h3>
+                        <!-- segment text-->        
+                        <label class="text" for="segmentText">text:</label>
+                        <input class="adjusted-input" type="text" id="segmentText" required>
+                        <!-- segment color-->  
+                        <label class="text" for="segmentColor">color:</label>
+                        <input class="adjusted-input-color" type="color" id="segmentColor" value="#FF8CA1" required>
+                        <br>
+                        <!-- segment button-->
+                        <div>
+                            <button type="button" class="btn btn-dark" onclick="addSegment()">add segment</button>
+                            <button type="button" class="btn btn-dark" onclick="clearSegment()">clear segment</button>
+                        </div>
                     </form>
-                    <!-- printout list of segments has populated -->
+
+                    <!-- segment list -->
                     <div id="segmentsList">
-                        <h3>Segments List:</h3>
-                        <ul id="segmentItems"></ul>
+                        <h3 class="text-header">current list:</h3>
+                        <ul class="text-list" id="segmentItems"></ul>
                     </div>
+
                 </td>
-                <!-- add promt spin power -->
-                <td class="center">
-                        <table class="power" cellpadding="15" cellspacing="0">
-                            <tr>
-                                <a class="text">spin power</a>
-                            </tr>
-                            <tr>
-                                <br>
-                            </tr>                      
-                            <tr>
-                                <div class="btn-group" role="group">
-                                    <label><button type="button" id="pw1" class="btn btn-dark" onClick="powerSelected(1)">LOW</button></label>
-                                    <label><button type="button" id="pw2" class="btn btn-dark" onClick="powerSelected(2)">MID</button></label>
-                                    <label><button type="button" id="pw3" class="btn btn-dark" onClick="powerSelected(3)">HIGH</button></label>
-                                </div>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <button type="button" id="spin_button" class="btn btn-secondary" onclick="startSpin()"> START </button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary"  onclick="window.open('https://www.buymeacoffee.com/thisistroyza', '_blank'); return false;"> DONATE </button>
-                            </td>   
-                            </tr>
-                        </table>
+
+                <!-- spin power -->
+                <td class="col-3">
+                    <table>
+                        <tr>
+                            <h3 class="text-header">spin power</h3>
+                        </tr>                 
+                        <tr>
+                            <div class="button-position">
+                                <button type="button" id="pw1" class="btn btn-dark" onClick="powerSelected(1)">low</button>
+                                <button type="button" id="pw2" class="btn btn-dark" onClick="powerSelected(2)">mid</button>
+                                <button type="button" id="pw3" class="btn btn-dark" onClick="powerSelected(3)">high</button>  
+                            </div>
+                        </tr>
+                        <br>
+                        <tr>
+                            <div class="button-position">
+                                <button type="button" class="btn btn-secondary" id="spin_button" onclick="startSpin()"> start </button>
+                                <button type="button" class="btn btn-secondary" onclick="window.open('https://www.buymeacoffee.com/thisistroyza', '_blank'); return false;"> donate </button>
+                            </div>   
+                        </tr>
+                    </table>
                 </td>
-                <!-- add promt wheel canvas -->
-                <td width="400" height="400" class="wheel-layout" align="center" valign="center">
-                    <canvas id="canvas" width="430" height="430">
-                        <p style="color: white" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+
+                <!-- wheel canvas -->
+                <td class="col-6 wheel-layout" align="center" valign="center">
+                    <canvas class="canvas-layout" id="canvas" width="400" height="400">
+                        <p style="color: white">Sorry, your browser doesn't support canvas. Please try another Chrome/Edge/Firefox.</p>
                     </canvas>
                 </td>
             </tr>
@@ -87,15 +95,15 @@
             const defaultWheelsegments = [
                 {
                     fillStyle: '#FF8CA1',
-                    text: 'sample1'
+                    text: 'sample-1'
                 },
                 {
                     fillStyle: '#FF8CA1',
-                    text: 'sample2'
+                    text: 'sample-2'
                 },
                 {
                     fillStyle: '#FF8CA1',
-                    text: 'sample3'
+                    text: 'sample-3'
                 }
             ]; 
             let wheelSegments = defaultWheelsegments;
@@ -103,8 +111,8 @@
             let wheelSpinning = false;
             let theWheel = new Winwheel({
                 'numSegments'  : defaultWheelsegments.length,     // Specify number of segments.
-                'outerRadius'  : 160,   // Set outer radius so wheel fits inside the background.
-                'textFontSize' : 15,    // Set font size as desired.
+                'outerRadius'  : 200,   // Set outer radius so wheel fits inside the background.
+                'textFontSize' : 14,    // Set font size as desired.
                 'segments'     : defaultWheelsegments,      // Define segments including colour and text,
                 'animation' :           // Specify the animation to use.
                 {
@@ -164,8 +172,8 @@
             function updateWheelSegments() {
                 theWheel = new Winwheel({
                     'numSegments': wheelSegments.length,
-                    'outerRadius': 160,
-                    'textFontSize': 15,
+                    'outerRadius': 200,
+                    'textFontSize': 14,
                     'segments': wheelSegments,
                     'animation': {
                         'type': 'spinToStop',
@@ -200,23 +208,27 @@
             {
                 // Ensure that power can't be changed while wheel is spinning.
                 if (wheelSpinning == false) {
-                    // Reset all to grey incase this is not the first time the user has selected the power.
-                    document.getElementById('pw1').className = "";
-                    document.getElementById('pw2').className = "";
-                    document.getElementById('pw3').className = "";
+                    if (powerLevel === null || powerLevel === undefined) return
+                   
+                    // Set default color for button
+                    document.getElementById('pw1').className = "btn btn-dark";
+                    document.getElementById('pw2').className = "btn btn-dark";
+                    document.getElementById('pw3').className = "btn btn-dark";
 
-                    // Now light up all cells below-and-including the one selected by changing the class.
-                    if (powerLevel >= 1) {
-                        document.getElementById('pw1').className = "pw1";
-                    }
-
-                    if (powerLevel >= 2) {
-                        document.getElementById('pw2').className = "pw2";
-                    }
-
-                    if (powerLevel >= 3) {
-                        document.getElementById('pw3').className = "pw3";
-                    }
+                    // Set active color for button
+                    if (powerLevel === 1) {
+                        document.getElementById('pw1').className = "btn btn-primary active";
+                        document.getElementById('pw2').className = "btn btn-dark";
+                        document.getElementById('pw3').className = "btn btn-dark";
+                    } else if (powerLevel === 2) {
+                        document.getElementById('pw2').className = "btn btn-primary active";
+                        document.getElementById('pw1').className = "btn btn-dark";
+                        document.getElementById('pw3').className = "btn btn-dark";
+                    } else if (powerLevel === 3) {
+                        document.getElementById('pw3').className = "btn btn-primary active";
+                        document.getElementById('pw1').className = "btn btn-dark";
+                        document.getElementById('pw2').className = "btn btn-dark";
+                    } 
 
                     // Set wheelPower var used when spin button is clicked.
                     wheelPower = powerLevel;
@@ -242,7 +254,7 @@
                     // Start animation
                     theWheel.startAnimation();
 
-                    // Allow to trigger again during the spin
+                    // Dont allow toggle start again during spinning
                     wheelSpinning = true;
                 }
             }
@@ -252,24 +264,25 @@
             // -------------------------------------------------------
             function resetWheel()
             {           
-                theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
-                theWheel.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
-                theWheel.draw();                // Call draw to render changes to the wheel.
+                theWheel.stopAnimation(false);  // ttop the animation, false as param so does not call callback function.
+                theWheel.rotationAngle = 0;     // reset the wheel angle to 0 degrees.
+                theWheel.draw();                // call draw to render changes to the wheel.
 
-                document.getElementById('pw1').className = "";  // Remove all colours from the power level indicators.
-                document.getElementById('pw2').className = "";
-                document.getElementById('pw3').className = "";
+                //set all the button to default color
+                document.getElementById('pw1').className = "btn btn-dark";  
+                document.getElementById('pw2').className = "btn btn-dark";
+                document.getElementById('pw3').className = "btn btn-dark";
 
-                wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again.
+                //reset wheelSpinning to false
+                wheelSpinning = false;  
             }
 
             // -------------------------------------------------------
-            // Called when the spin animation has finished by the callback feature of the wheel because I specified callback in the parameters
-            // note the indicated segment is passed in as a parmeter as 99% of the time you will want to know this to inform the user of their prize.
+            // RESULT: Populate the alert result. 
             // -------------------------------------------------------
             function alertResults(indicatedSegment)
             {
-                // Do basic alert of the segment text. You would probably want to do something more interesting with this information.
+                // Perform alert and reset wheel
                 alertify.alert(
                     'RESULT', 
                     'YOU NEED TO: ' + indicatedSegment.text, 
@@ -281,7 +294,7 @@
             }
 
             // -------------------------------------------------------
-            // Windows client api: add segment by Enter
+            // WINDOW CLIENT API: add segment by Enter
             // -------------------------------------------------------
             $(window).keypress(function (e){
                 if (e.which === 13) {
@@ -293,7 +306,7 @@
 
         <footer>
             <div>
-                <p>sponsor by a broke developer</p>
+                <p class="w3-animate-fading">sponsor by a broke developer</p>
             </div>
         </footer>
 
